@@ -1,0 +1,22 @@
+Hotel: lister l'ensemble de ses clients
+Hotel: récupérer les informations d'un client spécifique
+
+Client: récupérer les informations de l'hotel
+Client: lister l'ensemble des chambres de l'hôtel
+Client: récupérer les informations d'une chambre
+Client: louer une chambre (mettre juste un message de succès)
+
+
+implémenter 2 middlewares
+1 middleware pour check une api_key
+1 middleware pour check le body
+middleware qui check le body si on a bien un name ou age
+
+En utilisant la lib Passport, on donne un username et un password ce qui nous renvois un token
+
+Auth JWT (lib: jsonwebtoken):
+    - On tente de se connecter avec un body en json avec username et password
+    - Le serveur va vérifier si l'username et password est correct en BDD, si oui alors on va générer un JWT avec jwt.sign()
+    - Que l'on vas donc renvoyé à l'user,
+    - Ce token généré, nous allons l'utiliser pour l'implémenter dans le header,
+    - Chaque requête avec un middleware auth va vérifier si le JWT est valide si oui alors on récupère les informations de l'user
