@@ -18,11 +18,11 @@ router.get('/admin', isAuth, isAdminClient, (req, res) => {
     res.send("Route admin");
 });
 
-router.get('/clients', (req, res) => getClients(req, res));
+router.get('/clients', isAuth, isAdminClient, (req, res) => getClients(req, res));
 
-router.post('/clients/create', checkBodyClientInfo, (req, res) => createClient(req, res));
+router.post('/clients/create', isAuth, isAdminClient, checkBodyClientInfo, (req, res) => createClient(req, res));
 
-router.get('/clients/:id', (req, res) => getClientById(req, res));
-router.post('/clients/:id/edit', (req, res) => editClient(req, res));
-router.get('/clients/:id/reservation/:roomid', (req, res) => reservationChambre(req, res));
-router.get('/clients/:id/annulation/:roomid', (req, res) => annulationChambre(req, res));
+router.get('/clients/:id', isAuth, isAdminClient, (req, res) => getClientById(req, res));
+router.post('/clients/:id/edit', isAuth, isAdminClient, (req, res) => editClient(req, res));
+router.get('/clients/:id/reservation/:roomid', isAuth, isAdminClient, (req, res) => reservationChambre(req, res));
+router.get('/clients/:id/annulation/:roomid', isAuth, isAdminClient, (req, res) => annulationChambre(req, res));
