@@ -47,9 +47,9 @@ Les routes suivantes sont réservées au personnel de l'hôtel
 | GET    | /clients            | Récupère la liste complète des clients de l'hôtel.                                     |
 | GET    | /clients/:id        | Récupère les informations détaillées d'un client spécifique, identifié par son ID. |
 | POST   | /clients/create     | Crée un nouveau client en envoyant les informations nécessaires dans le corps de la requête. |
-| POST   | /clients/:id/edit   | Met à jour les informations d'un client existant, identifié par son ID.                 |
-| GET    | /clients/:id/reservation/:chambreId | Effectue une réservation pour un client spécifique dans une chambre donnée. |
-| GET    | /clients/:id/annulation/:reservationId | Annule une réservation existante, identifiée par son ID.                   |
+| PUT   | /clients/:id/edit   | Met à jour les informations d'un client existant, identifié par son ID.                 |
+| PATCH    | /clients/:id/reservation/:chambreId | Effectue une réservation pour un client spécifique dans une chambre donnée. |
+| DELETE    | /clients/:id/annulation/:reservationId | Annule une réservation existante, identifiée par son ID.                   |
 
 ### Routes utilisateur
 
@@ -60,5 +60,5 @@ Les routes suivantes sont accessibles aux utilisateurs standard de l'application
 | GET    | /hotel              | Récupère les informations générales sur l'hôtel (nom, adresse, etc.).                  |
 | GET    | /hotel/chambres     | Récupère la liste de toutes les chambres disponibles à l'hôtel.                       |
 | GET    | /hotel/chambres/:id  | Récupère les informations détaillées d'une chambre spécifique, identifiée par son ID. |
-| GET    | /hotel/chambres/:id/reservation | Effectue une réservation pour la chambre spécifiée.                                |
-| GET    | /hotel/chambres/:id/annulation   | Annule une réservation existante pour la chambre spécifiée.                    |
+| PATCH    | /hotel/chambres/:id/reservation | Effectue une réservation pour la chambre spécifiée.                                |
+| DELETE    | /hotel/chambres/:id/annulation   | Annule une réservation existante pour la chambre spécifiée.                    |
