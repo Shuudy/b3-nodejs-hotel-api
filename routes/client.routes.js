@@ -22,6 +22,6 @@ router.get('/clients', isAuthWithRole('admin'), (req, res) => getClients(req, re
 router.post('/clients/create', isAuthWithRole('admin'), checkBodyClientInfo, (req, res) => createClient(req, res));
 
 router.get('/clients/:id', isAuthWithRole('admin'), (req, res) => getClientById(req, res));
-router.post('/clients/:id/edit', isAuthWithRole('admin'), (req, res) => editClient(req, res));
-router.get('/clients/:id/reservation/:roomid', isAuthWithRole('admin'), (req, res) => reservationChambre(req, res));
-router.get('/clients/:id/annulation/:roomid', isAuthWithRole('admin'), (req, res) => annulationChambre(req, res));
+router.put('/clients/:id/edit', isAuthWithRole('admin'), (req, res) => editClient(req, res));
+router.patch('/clients/:id/reservation/:roomid', isAuthWithRole('admin'), (req, res) => reservationChambre(req, res));
+router.delete('/clients/:id/annulation/:roomid', isAuthWithRole('admin'), (req, res) => annulationChambre(req, res));

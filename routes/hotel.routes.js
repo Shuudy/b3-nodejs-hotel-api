@@ -7,5 +7,5 @@ export const router = Router();
 router.get('/hotel', isAuthWithRole(), (req, res) => getHotel(req, res));
 router.get('/hotel/chambres', isAuthWithRole(), (req, res) => getHotelChambres(req, res));
 router.get('/hotel/chambres/:id', isAuthWithRole(), (req, res) => getHotelChambre(req, res));
-router.get('/hotel/chambres/:id/reservation', isAuthWithRole(), (req, res) => reservationChambre(req, res));
-router.get('/hotel/chambres/:id/annulation', isAuthWithRole(), (req, res) => annulationChambre(req, res));
+router.patch('/hotel/chambres/:id/reservation', isAuthWithRole(), (req, res) => reservationChambre(req, res));
+router.delete('/hotel/chambres/:id/annulation', isAuthWithRole(), (req, res) => annulationChambre(req, res));
