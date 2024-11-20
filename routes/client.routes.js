@@ -4,6 +4,7 @@ import { checkBodyCreateClient } from "../middlewares/createclient.middleware.js
 import { checkLoginClient } from "../middlewares/login.middleware.js";
 import { isAdminClient } from "../middlewares/isadmin.middleware.js";
 import { isAuth } from "../middlewares/isauth.middleware.js";
+import { annulationChambre } from "../controllers/client.controller.js";
 
 export const router = Router();
 
@@ -23,3 +24,4 @@ router.post('/clients/create', checkBodyCreateClient, (req, res) => createClient
 
 router.get('/clients/:id', (req, res) => getClientById(req, res));
 router.get('/clients/:id/reservation/:roomid', (req, res) => reservationChambre(req, res));
+router.get('/clients/:id/annulation/:roomid', (req, res) => annulationChambre(req, res));
