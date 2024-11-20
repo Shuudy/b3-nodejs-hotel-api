@@ -3,6 +3,9 @@ import { router as ClientRouter } from './routes/client.routes.js';
 import { router as HotelRouter } from './routes/hotel.routes.js';
 import { checkApiKey } from "./middlewares/apikey.middleware.js";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = 3000;

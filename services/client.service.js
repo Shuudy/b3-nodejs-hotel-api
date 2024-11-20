@@ -10,7 +10,7 @@ export function getClient(id) {
 }
 
 export function getClientToken(client) {
-    return jwt.sign({ id: client.id, name: client.name, role: client.role }, 'mySecretKey');
+    return jwt.sign({ id: client.id, name: client.name, role: client.role }, process.env.JWT_SECRET);
 }
 
 export const clients = [

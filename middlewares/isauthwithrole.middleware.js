@@ -7,7 +7,7 @@ export function isAuthWithRole(role = null) {
             return res.status(400).json({ error: "Le bearer est manquant, impossible de continuer." });
         }
 
-        jwt.verify(token, 'mySecretKey', (err, user) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
             // Si le token n'est pas valide
             if (err) {
                 return res.status(401).json({ error: "Le bearer est invalide." });
