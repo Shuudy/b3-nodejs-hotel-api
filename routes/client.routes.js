@@ -19,7 +19,7 @@ router.get('/admin', isAuth, isAdminClient, (req, res) => {
 
 router.get('/clients', (req, res) => getClients(req, res));
 
-router.get('/clients/create', checkBodyCreateClient, (req, res) => createClient(req, res));
+router.post('/clients/create', checkBodyCreateClient, (req, res) => createClient(req, res));
 
 router.get('/clients/:id', (req, res) => getClientById(req, res));
 router.get('/clients/:id/reservation/:roomid', (req, res) => reservationChambre(req, res));
