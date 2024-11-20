@@ -16,6 +16,19 @@ export function getClientById(req, res) {
     res.send(client);
 }
 
+export function editClient(req, res) {
+    const client = getClient(req.params.id);
+
+    // Si on ne trouve pas le client demandé
+    if (!client) {
+        client = { error: 'Le client demandé est introuvable.' }
+    }
+
+    const { name, email, phone } = req.body;
+
+    return res.send({ success: `Vous avez modifié les informations du client ${client.name} par les nouvelles valeurs: ${name}, ${email}, ${phone}` });
+}
+
 export function reservationChambre(req, res) {
     let client = getClient(req.params.id);
 

@@ -1,5 +1,5 @@
 
-export function checkBodyCreateClient(req, res, next) {
+export function checkBodyClientInfo(req, res, next) {
     
     const { name, email, phone } = req.body;
 
