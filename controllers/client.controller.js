@@ -10,10 +10,10 @@ export function getClientById(req, res) {
 
     // Si on ne trouve pas le client demandé
     if (!client) {
-        client = { error: 'Le client demandé est introuvable.' }
+        return res.status(404).json({ error: 'Le client demandé est introuvable.' });
     }
 
-    res.send(client);
+    return res.json(client);
 }
 
 export function editClient(req, res) {
@@ -21,12 +21,14 @@ export function editClient(req, res) {
 
     // Si on ne trouve pas le client demandé
     if (!client) {
-        client = { error: 'Le client demandé est introuvable.' }
+        return res.status(404).json({ error: 'Le client demandé est introuvable.' });
     }
 
     const { name, email, phone } = req.body;
 
-    return res.send({ success: `Vous avez modifié les informations du client ${client.name} par les nouvelles valeurs: ${name}, ${email}, ${phone}` });
+    return res.status(200).json({
+        success: `Vous avez modifié les informations du client ${client.name} par les nouvelles valeurs: ${name}, ${email}, ${phone}`
+    });
 }
 
 export function reservationChambre(req, res) {
@@ -34,15 +36,15 @@ export function reservationChambre(req, res) {
 
     // Si on ne trouve pas le client demandé
     if (!client) {
-        res.send({ error: 'Le client demandé est introuvable.' });
+        return res.status(404).json({ error: 'Le client demandé est introuvable.' });
     } else { // Le client est trouvé
         const roomId = req.params.roomid;
         const hotelRoomData = getHotelInfosRoom(roomId);
 
         if (!hotelRoomData) {
-            res.send({ error: 'La chambre demandé est introuvable.' });
+            return res.status(404).json({ error: 'La chambre demandée est introuvable.' });
         } else {
-            res.send({ success: `Admin: ${client.name} réserve la chambre n°${roomId}, nom: ${hotelRoomData.name}`});
+            return res.send({ success: `Admin: ${client.name} réserve la chambre n°${roomId}, nom: ${hotelRoomData.name}`});
         }
     }
 }
@@ -52,17 +54,22 @@ export function annulationChambre(req, res) {
 
     // Si on ne trouve pas le client demandé
     if (!client) {
-        res.send({ error: 'Le client demandé est introuvable.' });
-    } else { // Le client est trouvé
-        const roomId = req.params.roomid;
-        const hotelRoomData = getHotelInfosRoom(roomId);
-
-        if (!hotelRoomData) {
-            res.send({ error: 'La chambre demandé est introuvable.' });
-        } else {
-            res.send({ success: `Admin: ${client.name} annule la reservation de la chambre n°${roomId}, nom: ${hotelRoomData.name}`});
-        }
+        return res.status(404).json({ error: 'Le client demandé est introuvable.' });
     }
+
+    // Le client est trouvé
+    const roomId = req.params.roomid;
+    const hotelRoomData = getHotelInfosRoom(roomId);
+
+    // Si la chambre n'est pas trouvée
+    if (!hotelRoomData) {
+        return res.status(404).json({ error: 'La chambre demandée est introuvable.' });
+    }
+
+    // Si tout se passe bien, annulation réussie
+    return res.status(200).json({
+        success: `Admin: ${client.name} annule la réservation de la chambre n°${roomId}, nom: ${hotelRoomData.name}`
+    });
 }
 
 export function createClient(req, res) {

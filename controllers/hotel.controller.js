@@ -13,7 +13,7 @@ export function getHotelChambre(req, res) {
     let hotelInfosRoom = getHotelInfosRoom(req.params.id);
 
     if (!hotelInfosRoom) {
-        hotelInfosRoom = { error: 'Cette chambre n\'existe pas.' }
+        return res.status(404).json({ error: 'Cette chambre n\'existe pas.' });
     }
 
     res.send(hotelInfosRoom);
@@ -25,10 +25,10 @@ export function reservationChambre(req, res) {
     const hotelRoomData = getHotelInfosRoom(roomId);
 
     if (!hotelRoomData) {
-        res.send({ error: 'Cette chambre n\'existe pas.' });
+        return res.status(404).json({ error: 'Cette chambre n\'existe pas.' });
     }
 
-    return res.send({ success: `${req.client.name} vous avez réservé la chambre n°${roomId}, nom: ${hotelRoomData.name}`});
+    return res.json({ success: `${req.client.name} vous avez réservé la chambre n°${roomId}, nom: ${hotelRoomData.name}`});
 }
 
 export function annulationChambre(req, res) {
@@ -37,8 +37,9 @@ export function annulationChambre(req, res) {
     const hotelRoomData = getHotelInfosRoom(roomId);
 
     if (!hotelRoomData) {
-        res.send({ error: 'Cette chambre n\'existe pas.' });
+        return res.status(404).json({ error: 'Cette chambre n\'existe pas.' });
     }
+
     // On pourrais vérifier si le client a bien cette chambre qui est réserver pour lui.
-    return res.send({ success: `${req.client.name} vous avez annulé la reservation de la chambre n°${roomId}, nom: ${hotelRoomData.name}`});
+    return res.json({ success: `${req.client.name} vous avez annulé la reservation de la chambre n°${roomId}, nom: ${hotelRoomData.name}`});
 }
