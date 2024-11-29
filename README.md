@@ -8,6 +8,28 @@ Cette application API REST, développée en Node.js et Express.js, a été conç
 * **Node.js et npm (ou yarn) installés**
 * **Un client HTTP** (Postman, curl, etc.)
 
+## Installation
+
+Pour lancer le serveur de l'application, suivez ces étapes :
+
+1. **Clonez le dépôt** sur votre machine locale :
+    ```bash
+    git clone https://github.com/Shuudy/b3-nodejs-hotel-api.git
+    ```
+2. **Accédez** au dossier du projet :
+    ```bash
+    cd b3-nodejs-hotel-api
+    ```
+3. **Installez** les dépendances avec npm :
+    ```bash
+    npm install
+    ```
+4. **Démarrez** le serveur en mode développement :
+    ```bash
+    npm run dev
+    ```
+    Cela lancera le serveur de développement, accessible à l'adresse http://localhost:3000.
+
 ## Authentification
 
 L'API utilise un système d'authentification à deux niveaux :
