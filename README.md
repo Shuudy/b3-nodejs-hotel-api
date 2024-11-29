@@ -23,6 +23,7 @@ L'API utilise un système d'authentification à deux niveaux :
     "name": "John",
     "password": "Bonjour"
   }
+  ```
 Une fois le JWT obtenu, incluez-le dans l'en-tête `Authorization` de vos requêtes au format `Bearer <votre_jwt>`.
 
 ## Comptes de test
