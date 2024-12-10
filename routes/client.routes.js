@@ -19,7 +19,7 @@ router.get('/admin', isAuthWithRole('admin'), (req, res) => {
 
 router.get('/clients', isAuthWithRole('admin'), (req, res) => getClients(req, res));
 
-router.post('/clients/create', isAuthWithRole('admin'), checkBodyClientInfo, (req, res) => createClient(req, res));
+router.post('/clients', isAuthWithRole('admin'), checkBodyClientInfo, (req, res) => createClient(req, res));
 
 router.get('/clients/:id', isAuthWithRole('admin'), (req, res) => getClientById(req, res));
 router.put('/clients/:id/edit', isAuthWithRole('admin'), checkBodyClientInfo, (req, res) => editClient(req, res));
