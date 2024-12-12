@@ -1,27 +1,16 @@
 import { Router } from "express";
-import { getClients, getClientById, reservationChambre, createClient, loginClient } from "../controllers/client.controller.js";
+import { getClients, getClientById, reservationChambre, createClient } from "../controllers/client.controller.js";
 import { checkBodyClientInfo } from "../middlewares/clientinfo.middleware.js";
-import { checkLoginClient } from "../middlewares/login.middleware.js";
 import { annulationChambre, editClient } from "../controllers/client.controller.js";
 import { isAuthWithRole } from "../middlewares/isauthwithrole.middleware.js";
 
 export const router = Router();
 
-// Auth routes
-router.post('/login', checkLoginClient, (req, res) => loginClient(req, res));
+router.get('/', isAuthWithRole('admin'), (req, res) => getClients(req, res));
 
-router.get('/user', isAuthWithRole(), (req, res) => {
-    res.send("Route user");
-});
-router.get('/admin', isAuthWithRole('admin'), (req, res) => {
-    res.send("Route admin");
-});
+router.post('/', isAuthWithRole('admin'), checkBodyClientInfo, (req, res) => createClient(req, res));
 
-router.get('/clients', isAuthWithRole('admin'), (req, res) => getClients(req, res));
-
-router.post('/clients', isAuthWithRole('admin'), checkBodyClientInfo, (req, res) => createClient(req, res));
-
-router.get('/clients/:id', isAuthWithRole('admin'), (req, res) => getClientById(req, res));
-router.put('/clients/:id', isAuthWithRole('admin'), checkBodyClientInfo, (req, res) => editClient(req, res));
-router.patch('/clients/:id/reservations/:roomid', isAuthWithRole('admin'), (req, res) => reservationChambre(req, res));
-router.delete('/clients/:id/reservations/:roomid', isAuthWithRole('admin'), (req, res) => annulationChambre(req, res));
+router.get('/:id', isAuthWithRole('admin'), (req, res) => getClientById(req, res));
+router.put('/:id', isAuthWithRole('admin'), checkBodyClientInfo, (req, res) => editClient(req, res));
+router.patch('/:id/reservations/:roomid', isAuthWithRole('admin'), (req, res) => reservationChambre(req, res));
+router.delete('/:id/reservations/:roomid', isAuthWithRole('admin'), (req, res) => annulationChambre(req, res));
